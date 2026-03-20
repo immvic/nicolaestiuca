@@ -44,6 +44,20 @@ body {
 .hero {
   padding: 36px 8vw 90px;
   color: var(--cream);
+  min-height: 62vh;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, var(--plum) 0%, #9a7f86 40%, var(--gold) 100%);
+  background-size: 220% 220%;
+  animation: heroGradient 12s ease-in-out infinite;
+  z-index: -1;
 }
 
 .nav {
@@ -112,10 +126,21 @@ body {
 }
 
 .logo--filarmonica {
-  width: 120px;
-  height: 120px;
-  padding: 14px;
-  background: var(--deep-navy);
+  width: 140px;
+  height: 140px;
+  padding: 0;
+  background: transparent;
+  border-radius: 18px;
+  object-fit: cover;
+}
+
+.logo--stiuca {
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  background: transparent;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
 .hero__content {
@@ -398,15 +423,15 @@ body {
 }
 
 .spotlight__card {
-  color: #1d1a22;
-  background: #ffffff;
-  border: 1px solid rgba(11, 44, 87, 0.12);
+  color: var(--white);
+  background: linear-gradient(145deg, rgba(11, 44, 87, 0.9), rgba(11, 44, 87, 0.7));
+  border: none;
 }
 
 .spotlight__card p,
 .spotlight__card strong,
 .spotlight__card span {
-  color: #1d1a22;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .spotlight__content {
@@ -417,7 +442,6 @@ body {
 }
 
 .spotlight__card {
-  background: rgba(255, 255, 255, 0.12);
   border-radius: 26px;
   padding: 24px;
   box-shadow: var(--shadow-soft);
@@ -434,7 +458,7 @@ body {
 .spotlight__brand span {
   display: block;
   font-size: 12px;
-  color: rgba(11, 44, 87, 0.65);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .footer {
@@ -472,5 +496,23 @@ body {
   .hero__meta {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@keyframes heroGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before {
+    animation: none;
   }
 }
